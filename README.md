@@ -1,5 +1,5 @@
 # Tuple Json Conveters
-A library that allows you to unrealize/serealize C# Tuple and ValueTuple
+A library that allows you to deserealize/serealize C# Tuple and ValueTuple
 
 ```cs
 using TupleJsonConverters;
