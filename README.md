@@ -6,7 +6,7 @@ using TupleJsonConverters;
 
 JsonSerializerOptions options = new()
 {
-    Converters = { new TupleConverterFactory() }
+    Converters = { new TupleConverter() }
 };
 
 JsonSerializer.Serialize((1, 2, 3, 4), options); // [1,2,3,4]
