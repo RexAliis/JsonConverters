@@ -8,10 +8,7 @@
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/RexAliis/TupleJsonConverters/</RepositoryUrl>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-
     <PackageLicenseUrl>https://raw.githubusercontent.com/RexAliis/TupleJsonConverters/stable/LICENSE</PackageLicenseUrl>
-    <RepositoryUrl>https://github.com/RexAliis/TupleJsonConverters</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
 </Project>
