@@ -28,8 +28,10 @@ jobs:
     - name: Pack
       run: dotnet pack --configuration Release --no-build --output ./nupkg
 
-    - name: Add NuGet package
-      run: dotnet nuget add source --username RexAliis --password ${{ secrets.PACKAGES_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/RexAliis/index.json"
-    
-    - name: Publis NuGet package
-      run: dotnet nuget push ./nupkg/*.nupkg --source github --api-key ${{ secrets.PACKAGES_TOKEN }}
+    - name: Add GitHub Package Source and Publish to GitHub Packages
+      run: |
+        dotnet nuget add source --username RexAliis --password ${{ secrets.PACKAGES_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/RexAliis/index.json"
+        dotnet nuget push ./nupkg/*.nupkg --source github --api-key ${{ secrets.PACKAGES_TOKEN }}
+
+    - name: Publish to NuGet
+      run: dotnet nuget push ./nupkg/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
