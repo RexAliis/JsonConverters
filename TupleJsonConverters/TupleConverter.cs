@@ -8,6 +8,7 @@ namespace TupleJsonConverters
     {
         public override bool CanConvert(Type typeToConvert)
         {
+            if(typeToConvert == null) throw new ArgumentNullException(nameof(typeToConvert));
             if (!typeToConvert.IsGenericType) return false;
 
             Type typeDefinition = typeToConvert.GetGenericTypeDefinition();
@@ -32,6 +33,7 @@ namespace TupleJsonConverters
         }
         public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)
         {
+            if (typeToConvert == null) throw new ArgumentNullException(nameof(typeToConvert));
             Type converter = GetConverterType(typeToConvert);
             return (Activator.CreateInstance(converter) as JsonConverter)!;
         }
@@ -50,7 +52,7 @@ namespace TupleJsonConverters
                     6 => typeof(TupleJsonConverter<,,,,,>).MakeGenericType(arguments),
                     7 => typeof(TupleJsonConverter<,,,,,,>).MakeGenericType(arguments),
                     8 => typeof(TupleJsonConverter<,,,,,,,>).MakeGenericType(arguments),
-                    _ => throw new ArgumentOutOfRangeException()
+                    _ => throw new InvalidOperationException()
                 }
                 : arguments.Length switch
                 {
@@ -62,7 +64,7 @@ namespace TupleJsonConverters
                     6 => typeof(ValueTupleJsonConverter<,,,,,>).MakeGenericType(arguments),
                     7 => typeof(ValueTupleJsonConverter<,,,,,,>).MakeGenericType(arguments),
                     8 => typeof(ValueTupleJsonConverter<,,,,,,,>).MakeGenericType(arguments),
-                    _ => throw new ArgumentOutOfRangeException()
+                    _ => throw new InvalidOperationException()
                 };
         }
     }

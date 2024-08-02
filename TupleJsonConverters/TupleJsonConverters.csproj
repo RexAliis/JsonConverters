@@ -1,16 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-	<Version>1.0.1</Version>
-    <TargetFrameworks>net8.0;net7.0;net6.0;</TargetFrameworks>
-    <ImplicitUsings>disable</ImplicitUsings>
-	<Nullable>enable</Nullable>
-	<Authors>Rex Aliis</Authors>
-	<Title>Tuple Json Converters</Title>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/RexAliis/TupleJsonConverters/</RepositoryUrl>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/RexAliis/TupleJsonConverters/stable/LICENSE</PackageLicenseUrl>
-	<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-  </PropertyGroup>
+	<PropertyGroup>
+		<Version>1.0.1</Version>
+		<TargetFrameworks>netstandard2.1</TargetFrameworks>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Authors>Rex Aliis</Authors>
+		<Title>Tuple Json Converters</Title>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/RexAliis/TupleJsonConverters/</RepositoryUrl>
+		<PackageLicenseUrl>https://raw.githubusercontent.com/RexAliis/TupleJsonConverters/stable/LICENSE</PackageLicenseUrl>
+		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+	</PropertyGroup>
 
+	<ItemGroup>
+		<PackageReference Include="System.Text.Json" Version="8.0.4" />
+	</ItemGroup>
 </Project>
