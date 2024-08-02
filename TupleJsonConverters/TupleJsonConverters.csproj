@@ -1,17 +1,46 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<Version>1.0.1</Version>
-		<TargetFrameworks>netstandard2.1</TargetFrameworks>
+		<Version>1.0.2</Version>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<PlatformTarget>AnyCPU</PlatformTarget>
 		<ImplicitUsings>disable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<WarningLevel>4</WarningLevel>
+		<IsPublishable>True</IsPublishable>
+		<Deterministic>True</Deterministic>
+		<DebugType>portable</DebugType>
+		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+
 		<Authors>Rex Aliis</Authors>
 		<Title>Tuple Json Converters</Title>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/RexAliis/TupleJsonConverters/</RepositoryUrl>
-		<PackageLicenseUrl>https://raw.githubusercontent.com/RexAliis/TupleJsonConverters/stable/LICENSE</PackageLicenseUrl>
-		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+
+		<EnableNETAnalyzers>True</EnableNETAnalyzers>
+		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+		<RunAnalyzersDuringBuild>True</RunAnalyzersDuringBuild>
+		<RunAnalyzersDuringLiveAnalysis>True</RunAnalyzersDuringLiveAnalysis>
+		<AnalysisLevel>latest-all</AnalysisLevel>
+		<NoWarn>CA1812</NoWarn>
 	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<Optimize>True</Optimize>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="System.Text.Json" Version="8.0.4" />
