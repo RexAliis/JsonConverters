@@ -8,8 +8,7 @@ namespace TupleJsonConverters
     {
         public override bool CanConvert(Type typeToConvert)
         {
-            if(typeToConvert == null) throw new ArgumentNullException(nameof(typeToConvert));
-            if (!typeToConvert.IsGenericType) return false;
+            if(typeToConvert == null || !typeToConvert.IsGenericType) return false;
 
             Type typeDefinition = typeToConvert.GetGenericTypeDefinition();
 
