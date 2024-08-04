@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace TupleJsonConverters
 {
-    internal abstract class ExtendedJsonConverter<TypeToConvert> : JsonConverter<TypeToConvert>
+    public abstract class ExtendedJsonConverter<TypeToConvert> : JsonConverter<TypeToConvert>
     {
         protected static T GetNextValue<T>(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
