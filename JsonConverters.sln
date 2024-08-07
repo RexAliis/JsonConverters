@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TupleJsonConverters", "TupleJsonConverters\TupleJsonConverters.csproj", "{B9BC3652-5EF8-46A3-BC4A-7E7A0F9D40E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonConverters", "JsonConverters\JsonConverters.csproj", "{B9BC3652-5EF8-46A3-BC4A-7E7A0F9D40E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json;
 
-namespace TupleJsonConverters
+namespace JsonConverters
 {
     internal sealed class TupleJsonConverter<T1> : ExtendedJsonConverter<Tuple<T1>>
     {
