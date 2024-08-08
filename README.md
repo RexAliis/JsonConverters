@@ -1,14 +1,25 @@
-# Tuple Json Conveters
-A library that allows you to deserealize/serealize C# Tuple and ValueTuple
+# Json Conveters
+A library to serialize/deserialize types without native .NET json converters
+
+### Supported types
+ - Tuple
+ - ValueTuple
+ - ImmutableArray
 
 ```cs
-using TupleJsonConverters;
+using JsonConverters;
 
 JsonSerializerOptions options = new()
 {
-    Converters = { new TupleConverter() }
+    Converters = 
+    {
+        new TupleConverter(),
+        new ImmutableArrayConverter(),
+    }
 };
 
-JsonSerializer.Serialize((1, 2, 3, 4), options); // [1,2,3,4]
-JsonSerializer.Deserialize<(int, int, int, int)>("[5,6,7,8]", options); //ValueTuple<int, int, int, int>(5, 6, 7, 8);
+JsonSerializer.Serialize((1, 2, 3, 4), options); // string [1,2,3,4]
+JsonSerializer.Deserialize<(int, int, int, int)>("[5,6,7,8]", options); // ValueTuple<int, int, int, int> (5, 6, 7, 8)
+JsonSerializer.Serialize(ImmutableArray.Create("a", "b")); // string ["a","b"]
+JsonSerializer.Deserialize<ImmutableArray<string>>("""["c","d"]"""); // ImmutableArray<string> ["c", "d"]
 ```
