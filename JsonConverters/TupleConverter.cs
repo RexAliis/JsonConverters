@@ -34,7 +34,7 @@ namespace JsonConverters
         public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)
         {
             ArgumentNullException.ThrowIfNull(typeToConvert);
-            return (Activator.CreateInstance(GetConverterType(typeToConvert)) as JsonConverter)!;
+            return (Activator.CreateInstance(GetConverterType(typeToConvert)) as JsonConverter) ?? throw new InvalidOperationException();
         }
         private static Type GetConverterType(Type type)
         {
