@@ -2,13 +2,14 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace TupleJsonConverters
+namespace JsonConverters
 {
     public sealed class TupleConverter : JsonConverterFactory
     {
         public override bool CanConvert(Type typeToConvert)
         {
-            if(typeToConvert == null || !typeToConvert.IsGenericType) return false;
+            ArgumentNullException.ThrowIfNull(typeToConvert);
+            if (!typeToConvert.IsGenericType) return false;
 
             Type typeDefinition = typeToConvert.GetGenericTypeDefinition();
 
@@ -32,9 +33,8 @@ namespace TupleJsonConverters
         }
         public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)
         {
-            if (typeToConvert == null) throw new ArgumentNullException(nameof(typeToConvert));
-            Type converter = GetConverterType(typeToConvert);
-            return (Activator.CreateInstance(converter) as JsonConverter)!;
+            ArgumentNullException.ThrowIfNull(typeToConvert);
+            return (Activator.CreateInstance(GetConverterType(typeToConvert)) as JsonConverter)!;
         }
         private static Type GetConverterType(Type type)
         {
