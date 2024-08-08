@@ -14,7 +14,7 @@
 		<Version>1.0.0</Version>
 		<Authors>Rex Aliis</Authors>
 		<Title>Json Converters</Title>
-		<PackageId>JsonConverters</PackageId>
+		<PackageId>RexAliis.JsonConverters</PackageId>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/RexAliis/TupleJsonConverters/</RepositoryUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
