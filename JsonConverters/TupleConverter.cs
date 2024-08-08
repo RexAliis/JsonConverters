@@ -33,9 +33,8 @@ namespace JsonConverters
         }
         public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)
         {
-            Type converter = GetConverterType(typeToConvert);
-            return (Activator.CreateInstance(converter) as JsonConverter)!;
             ArgumentNullException.ThrowIfNull(typeToConvert);
+            return (Activator.CreateInstance(GetConverterType(typeToConvert)) as JsonConverter)!;
         }
         private static Type GetConverterType(Type type)
         {
