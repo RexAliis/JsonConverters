@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<Version>1.0.0</Version>
 		<TargetFramework>net8</TargetFramework>
 		<PlatformTarget>AnyCPU</PlatformTarget>
 		<ImplicitUsings>disable</ImplicitUsings>
@@ -12,8 +11,10 @@
 		<DebugType>portable</DebugType>
 		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 
+		<Version>1.0.0</Version>
 		<Authors>Rex Aliis</Authors>
 		<Title>Json Converters</Title>
+		<PackageId>JsonConverters</PackageId>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/RexAliis/TupleJsonConverters/</RepositoryUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
