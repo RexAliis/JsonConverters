@@ -16,7 +16,7 @@ namespace JsonConverters
             writer.WriteStartArray();
             foreach (T item in value)
             {
-                WriteValue(writer, item, options);
+                Write(writer, item, options);
             }
 
             writer.WriteEndArray();

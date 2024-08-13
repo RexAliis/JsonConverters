@@ -8,20 +8,20 @@ namespace JsonConverters
     [SuppressMessage("Design", "CA1062: Validate arguments of public methods", Justification = "Instances should be handled only by the JsonSerializer")]
     public abstract class ExtendedJsonConverter<TTypeToConvert> : JsonConverter<TTypeToConvert>
     {
-        protected static T GetNextValue<T>(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        protected static T ReadNext<T>(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             _ = reader.Read();
-            return GetValue<T>(ref reader, typeToConvert, options);
+            return Read<T>(ref reader, typeToConvert, options);
         }
 
-        protected static T GetValue<T>(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        protected static T Read<T>(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             return options.GetConverter(typeof(T)) is JsonConverter<T> converter
             ? converter.Read(ref reader, typeToConvert, options)!
             : JsonSerializer.Deserialize<T>(ref reader, options)!;
         }
 
-        protected static void WriteValue<T>(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
+        protected static void Write<T>(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
         {
             if (options.GetConverter(typeof(T)) is JsonConverter<T> converter) converter.Write(writer, value, options);
             else JsonSerializer.Serialize(writer, value, options);
