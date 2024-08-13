@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Text.Json;
 
@@ -9,17 +8,7 @@ namespace JsonConverters
     {
         public override ImmutableArray<T> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            if (reader.TokenType != JsonTokenType.StartArray) throw new JsonException();
-
-            List<T> values = [];
-            _ = reader.Read();
-
-            while (reader.TokenType != JsonTokenType.EndArray)
-            {
-                values.Add(GetValue<T>(ref reader, typeToConvert, options));
-                _ = reader.Read();
-            }
-
+            T[] values = JsonSerializer.Deserialize<T[]>(ref reader, options) ?? throw new JsonException();
             return [.. values];
         }
         public override void Write(Utf8JsonWriter writer, ImmutableArray<T> value, JsonSerializerOptions options)
