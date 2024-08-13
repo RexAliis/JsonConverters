@@ -26,5 +26,11 @@ namespace JsonConverters
             if (options.GetConverter(typeof(T)) is JsonConverter<T> converter) converter.Write(writer, value, options);
             else JsonSerializer.Serialize(writer, value, options);
         }
+        
+        protected static void WriteAsPropertyName<T>(Utf8JsonWriter writer, T value, JsonSerializerOptions options) where T : notnull
+        {
+            if (options.GetConverter(typeof(T)) is JsonConverter<T> converter) converter.WriteAsPropertyName(writer, value, options);
+            else JsonSerializer.Serialize(writer, value, options);
+        }
     }
 }
