@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Immutable;
+using System.Linq;
 using System.Text.Json;
 
 namespace JsonConverters
@@ -13,13 +14,7 @@ namespace JsonConverters
         }
         public override void Write(Utf8JsonWriter writer, ImmutableArray<T> value, JsonSerializerOptions options)
         {
-            writer.WriteStartArray();
-            foreach (T item in value)
-            {
-                Write(writer, item, options);
-            }
-
-            writer.WriteEndArray();
+            JsonSerializer.Serialize(writer, value.ToArray(), options);
         }
     }
 }
