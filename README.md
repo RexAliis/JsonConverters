@@ -10,6 +10,7 @@ dotnet add package RexAliis.JsonConverters --version 1.0.0
  - Tuple
  - ValueTuple
  - ImmutableArray
+ - ImmutableDictionary
 
 ```cs
 using JsonConverters;
