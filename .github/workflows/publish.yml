@@ -3,30 +3,29 @@ name: Publish NuGet Package
 on:
   workflow_dispatch:
   push:
-    branches:
-      - stable
+    tags:
+      - 'v*.*.*'
 
 jobs:
-  build-and-publish:
+  publish:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '8.x'
+      - name: Setup .NET environment
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
 
-    - name: Install dependencies
-      run: dotnet restore
+      - name: Restore dependencies
+        run: dotnet restore
 
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
+      - name: Build project
+        run: dotnet build --configuration Release --no-restore
 
-    - name: Pack
-      run: dotnet pack --configuration Release --no-build --output ./nupkg
+      - name: Pack project
+        run: dotnet pack --configuration Release --no-build --output ./nupkg
 
-    - name: Publish to NuGet
-      run: dotnet nuget push ./nupkg/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
+      - name: Publish to nuget.org
+        run: dotnet nuget push ./nupkg/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
