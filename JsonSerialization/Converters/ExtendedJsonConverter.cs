@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace JsonConverters
+namespace JsonSerialization.Converters
 {
     [SuppressMessage("Design", "CA1062: Validate arguments of public methods", Justification = "Instances should be handled only by the JsonSerializer")]
     public abstract class ExtendedJsonConverter<TTypeToConvert> : JsonConverter<TTypeToConvert>

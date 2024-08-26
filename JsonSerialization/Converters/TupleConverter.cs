@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace JsonConverters
+namespace JsonSerialization.Converters
 {
     public sealed class TupleConverter : JsonConverterFactory
     {

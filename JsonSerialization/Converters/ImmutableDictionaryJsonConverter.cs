@@ -4,7 +4,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Text.Json;
 
-namespace JsonConverters
+namespace JsonSerialization.Converters
 {
     internal sealed class ImmutableDictionaryJsonConverter<TKey, TValue> : ExtendedJsonConverter<ImmutableDictionary<TKey, TValue>> where TKey : notnull
     {

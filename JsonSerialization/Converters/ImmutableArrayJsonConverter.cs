@@ -3,7 +3,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Text.Json;
 
-namespace JsonConverters
+namespace JsonSerialization.Converters
 {
     internal sealed class ImmutableArrayJsonConverter<T> : ExtendedJsonConverter<ImmutableArray<T>>
     {
