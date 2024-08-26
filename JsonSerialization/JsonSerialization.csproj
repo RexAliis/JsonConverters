@@ -11,9 +11,9 @@
 		<DebugType>portable</DebugType>
 		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 
-		<Version>2.0.0</Version>
+		<Version>1.0.0</Version>
 		<Authors>Rex Aliis</Authors>
-		<Title>Json Converters</Title>
+		<Title>Json Serialization</Title>
 		<PackageId>RexAliis.JsonSerialization</PackageId>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/RexAliis/JsonSerialization/</RepositoryUrl>
