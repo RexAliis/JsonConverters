@@ -7,6 +7,7 @@ namespace JsonSerialization.Nullability
 	public readonly struct Optional<T> : IEquatable<Optional<T>> where T : notnull
 	{
 		public readonly T? Value { get; private init; } = default;
+		public readonly bool HasValue { get; private init; } = false;
 		public readonly bool IsNull { get; private init; } = false;
 		public readonly bool IsUndefined { get; private init; } = true;
 		public static readonly Optional<T> Undefined = new();
@@ -16,6 +17,7 @@ namespace JsonSerialization.Nullability
 		{
 			Value = value;
 			IsNull = value == null;
+			HasValue = !IsNull;
 			IsUndefined = false;
 		}
 
