@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace JsonSerialization.Nullability
 {
 	[SuppressMessage("Naming", "CA1716: Identifiers should not match keywords")]
-	public readonly struct Optional<T> : IEquatable<Optional<T>> where T : notnull
+	public readonly struct Optional<T> : IEquatable<Optional<T>>
 	{
 		public readonly T? Value { get; private init; } = default;
 		public readonly bool HasValue { get; private init; } = false;
@@ -13,7 +13,7 @@ namespace JsonSerialization.Nullability
 		public static readonly Optional<T> Undefined = new();
 
 		public Optional() { }
-		public Optional(T? value)
+		public Optional(T value)
 		{
 			Value = value;
 			IsNull = value == null;

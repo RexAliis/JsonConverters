@@ -5,14 +5,14 @@ using System.Text.Json.Serialization;
 
 namespace JsonSerialization.Converters
 {
-    internal sealed class OptionalJsonConverter<T> : JsonConverter<Optional<T>> where T : notnull
+    internal sealed class OptionalJsonConverter<T> : JsonConverter<Optional<T>>
     {
 		public override bool HandleNull => true;
 		public override Optional<T> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
 			if (reader.TokenType == JsonTokenType.Null)
 			{
-				return new(default);
+				return new(default!);
 			};
 
 			T value = JsonSerializer.Deserialize<T>(ref reader, options) ?? throw new JsonException();
