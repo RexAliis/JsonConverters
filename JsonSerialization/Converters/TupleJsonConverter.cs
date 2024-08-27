@@ -7,8 +7,12 @@ namespace JsonSerialization.Converters
     {
         public override Tuple<T1> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            if (reader.TokenType != JsonTokenType.StartArray) throw new JsonException();
-            T1 item1 = ReadNext<T1>(ref reader, typeToConvert, options);
+            if (reader.TokenType != JsonTokenType.StartArray)
+			{
+				throw new JsonException();
+			}
+
+			T1 item1 = ReadNext<T1>(ref reader, typeToConvert, options);
             _ = reader.Read();
             return new Tuple<T1>(item1);
         }
@@ -23,8 +27,12 @@ namespace JsonSerialization.Converters
     {
         public override Tuple<T1, T2> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            if (reader.TokenType != JsonTokenType.StartArray) throw new JsonException();
-            T1 item1 = ReadNext<T1>(ref reader, typeToConvert, options);
+            if (reader.TokenType != JsonTokenType.StartArray)
+			{
+				throw new JsonException();
+			}
+
+			T1 item1 = ReadNext<T1>(ref reader, typeToConvert, options);
             T2 item2 = ReadNext<T2>(ref reader, typeToConvert, options);
             _ = reader.Read();
             return new Tuple<T1, T2>(item1, item2);
@@ -41,8 +49,12 @@ namespace JsonSerialization.Converters
     {
         public override Tuple<T1, T2, T3> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            if (reader.TokenType != JsonTokenType.StartArray) throw new JsonException();
-            T1 item1 = ReadNext<T1>(ref reader, typeToConvert, options);
+            if (reader.TokenType != JsonTokenType.StartArray)
+			{
+				throw new JsonException();
+			}
+
+			T1 item1 = ReadNext<T1>(ref reader, typeToConvert, options);
             T2 item2 = ReadNext<T2>(ref reader, typeToConvert, options);
             T3 item3 = ReadNext<T3>(ref reader, typeToConvert, options);
             _ = reader.Read();
@@ -61,8 +73,12 @@ namespace JsonSerialization.Converters
     {
         public override Tuple<T1, T2, T3, T4> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            if (reader.TokenType != JsonTokenType.StartArray) throw new JsonException();
-            T1 item1 = ReadNext<T1>(ref reader, typeToConvert, options);
+            if (reader.TokenType != JsonTokenType.StartArray)
+			{
+				throw new JsonException();
+			}
+
+			T1 item1 = ReadNext<T1>(ref reader, typeToConvert, options);
             T2 item2 = ReadNext<T2>(ref reader, typeToConvert, options);
             T3 item3 = ReadNext<T3>(ref reader, typeToConvert, options);
             T4 item4 = ReadNext<T4>(ref reader, typeToConvert, options);
@@ -83,8 +99,12 @@ namespace JsonSerialization.Converters
     {
         public override Tuple<T1, T2, T3, T4, T5> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            if (reader.TokenType != JsonTokenType.StartArray) throw new JsonException();
-            T1 item1 = ReadNext<T1>(ref reader, typeToConvert, options);
+            if (reader.TokenType != JsonTokenType.StartArray)
+			{
+				throw new JsonException();
+			}
+
+			T1 item1 = ReadNext<T1>(ref reader, typeToConvert, options);
             T2 item2 = ReadNext<T2>(ref reader, typeToConvert, options);
             T3 item3 = ReadNext<T3>(ref reader, typeToConvert, options);
             T4 item4 = ReadNext<T4>(ref reader, typeToConvert, options);
@@ -107,8 +127,12 @@ namespace JsonSerialization.Converters
     {
         public override Tuple<T1, T2, T3, T4, T5, T6> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            if (reader.TokenType != JsonTokenType.StartArray) throw new JsonException();
-            T1 item1 = ReadNext<T1>(ref reader, typeToConvert, options);
+            if (reader.TokenType != JsonTokenType.StartArray)
+			{
+				throw new JsonException();
+			}
+
+			T1 item1 = ReadNext<T1>(ref reader, typeToConvert, options);
             T2 item2 = ReadNext<T2>(ref reader, typeToConvert, options);
             T3 item3 = ReadNext<T3>(ref reader, typeToConvert, options);
             T4 item4 = ReadNext<T4>(ref reader, typeToConvert, options);
@@ -133,8 +157,12 @@ namespace JsonSerialization.Converters
     {
         public override Tuple<T1, T2, T3, T4, T5, T6, T7> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            if (reader.TokenType != JsonTokenType.StartArray) throw new JsonException();
-            T1 item1 = ReadNext<T1>(ref reader, typeToConvert, options);
+            if (reader.TokenType != JsonTokenType.StartArray)
+			{
+				throw new JsonException();
+			}
+
+			T1 item1 = ReadNext<T1>(ref reader, typeToConvert, options);
             T2 item2 = ReadNext<T2>(ref reader, typeToConvert, options);
             T3 item3 = ReadNext<T3>(ref reader, typeToConvert, options);
             T4 item4 = ReadNext<T4>(ref reader, typeToConvert, options);
@@ -161,8 +189,12 @@ namespace JsonSerialization.Converters
     {
         public override Tuple<T1, T2, T3, T4, T5, T6, T7, TRest> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            if (reader.TokenType != JsonTokenType.StartArray) throw new JsonException();
-            T1 item1 = ReadNext<T1>(ref reader, typeToConvert, options);
+            if (reader.TokenType != JsonTokenType.StartArray)
+			{
+				throw new JsonException();
+			}
+
+			T1 item1 = ReadNext<T1>(ref reader, typeToConvert, options);
             T2 item2 = ReadNext<T2>(ref reader, typeToConvert, options);
             T3 item3 = ReadNext<T3>(ref reader, typeToConvert, options);
             T4 item4 = ReadNext<T4>(ref reader, typeToConvert, options);

@@ -9,9 +9,12 @@ namespace JsonSerialization.Converters
         public override bool CanConvert(Type typeToConvert)
         {
             ArgumentNullException.ThrowIfNull(typeToConvert);
-            if (!typeToConvert.IsGenericType) return false;
+            if (!typeToConvert.IsGenericType)
+			{
+				return false;
+			}
 
-            Type typeDefinition = typeToConvert.GetGenericTypeDefinition();
+			Type typeDefinition = typeToConvert.GetGenericTypeDefinition();
 
             return typeToConvert.IsClass
                 ? typeDefinition == typeof(Tuple<>)

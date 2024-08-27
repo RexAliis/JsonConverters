@@ -12,9 +12,6 @@ namespace JsonSerialization.Converters
             T[] values = JsonSerializer.Deserialize<T[]>(ref reader, options) ?? throw new JsonException();
             return [.. values];
         }
-        public override void Write(Utf8JsonWriter writer, ImmutableArray<T> value, JsonSerializerOptions options)
-        {
-            JsonSerializer.Serialize(writer, value.ToArray(), options);
-        }
-    }
+		public override void Write(Utf8JsonWriter writer, ImmutableArray<T> value, JsonSerializerOptions options) => JsonSerializer.Serialize(writer, value.ToArray(), options);
+	}
 }

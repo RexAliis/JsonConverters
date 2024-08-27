@@ -13,9 +13,6 @@ namespace JsonSerialization.Converters
             Dictionary<TKey, TValue> dictionary = JsonSerializer.Deserialize<Dictionary<TKey, TValue>>(ref reader, options) ?? throw new JsonException();
             return dictionary.ToImmutableDictionary();
         }
-        public override void Write(Utf8JsonWriter writer, ImmutableDictionary<TKey, TValue> value, JsonSerializerOptions options)
-        {
-            JsonSerializer.Serialize(writer, value.ToDictionary(), options);
-        }
-    }
+		public override void Write(Utf8JsonWriter writer, ImmutableDictionary<TKey, TValue> value, JsonSerializerOptions options) => JsonSerializer.Serialize(writer, value.ToDictionary(), options);
+	}
 }
