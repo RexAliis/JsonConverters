@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace JsonSerialization.Converters
 {
-    internal sealed class ValueTupleJsonConverter<T1> : ExtendedJsonConverter<ValueTuple<T1>>
+    internal sealed class ValueTupleJsonConverter<T1> : JsonConverter<ValueTuple<T1>>
     {
         public override ValueTuple<T1> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
@@ -12,18 +13,19 @@ namespace JsonSerialization.Converters
 				throw new JsonException();
 			}
 
-			T1 item1 = ReadNext<T1>(ref reader, typeToConvert, options);
+			_ = reader.Read();
+			T1 item1 = JsonSerializer.Deserialize<T1>(ref reader, options)!;
             _ = reader.Read();
             return new ValueTuple<T1>(item1);
         }
         public override void Write(Utf8JsonWriter writer, ValueTuple<T1> value, JsonSerializerOptions options)
         {
             writer.WriteStartArray();
-            Write(writer, value.Item1, options);
+            JsonSerializer.Serialize(writer, value.Item1, options);
             writer.WriteEndArray();
         }
     }
-    internal sealed class ValueTupleJsonConverter<T1, T2> : ExtendedJsonConverter<ValueTuple<T1, T2>>
+    internal sealed class ValueTupleJsonConverter<T1, T2> : JsonConverter<ValueTuple<T1, T2>>
     {
         public override ValueTuple<T1, T2> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
@@ -32,20 +34,22 @@ namespace JsonSerialization.Converters
 				throw new JsonException();
 			}
 
-			T1 item1 = ReadNext<T1>(ref reader, typeToConvert, options);
-            T2 item2 = ReadNext<T2>(ref reader, typeToConvert, options);
+			_ = reader.Read();
+			T1 item1 = JsonSerializer.Deserialize<T1>(ref reader, options)!;
+            _ = reader.Read();
+			T2 item2 = JsonSerializer.Deserialize<T2>(ref reader, options)!;
             _ = reader.Read();
             return new ValueTuple<T1, T2>(item1, item2);
         }
         public override void Write(Utf8JsonWriter writer, ValueTuple<T1, T2> value, JsonSerializerOptions options)
         {
             writer.WriteStartArray();
-            Write(writer, value.Item1, options);
-            Write(writer, value.Item2, options);
+            JsonSerializer.Serialize(writer, value.Item1, options);
+            JsonSerializer.Serialize(writer, value.Item2, options);
             writer.WriteEndArray();
         }
     }
-    internal sealed class ValueTupleJsonConverter<T1, T2, T3> : ExtendedJsonConverter<ValueTuple<T1, T2, T3>>
+    internal sealed class ValueTupleJsonConverter<T1, T2, T3> : JsonConverter<ValueTuple<T1, T2, T3>>
     {
         public override ValueTuple<T1, T2, T3> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
@@ -54,22 +58,25 @@ namespace JsonSerialization.Converters
 				throw new JsonException();
 			}
 
-			T1 item1 = ReadNext<T1>(ref reader, typeToConvert, options);
-            T2 item2 = ReadNext<T2>(ref reader, typeToConvert, options);
-            T3 item3 = ReadNext<T3>(ref reader, typeToConvert, options);
+			_ = reader.Read();
+			T1 item1 = JsonSerializer.Deserialize<T1>(ref reader, options)!;
+            _ = reader.Read();
+			T2 item2 = JsonSerializer.Deserialize<T2>(ref reader, options)!;
+            _ = reader.Read();
+			T3 item3 = JsonSerializer.Deserialize<T3>(ref reader, options)!;
             _ = reader.Read();
             return new ValueTuple<T1, T2, T3>(item1, item2, item3);
         }
         public override void Write(Utf8JsonWriter writer, ValueTuple<T1, T2, T3> value, JsonSerializerOptions options)
         {
             writer.WriteStartArray();
-            Write(writer, value.Item1, options);
-            Write(writer, value.Item2, options);
-            Write(writer, value.Item3, options);
+            JsonSerializer.Serialize(writer, value.Item1, options);
+            JsonSerializer.Serialize(writer, value.Item2, options);
+            JsonSerializer.Serialize(writer, value.Item3, options);
             writer.WriteEndArray();
         }
     }
-    internal sealed class ValueTupleJsonConverter<T1, T2, T3, T4> : ExtendedJsonConverter<ValueTuple<T1, T2, T3, T4>>
+    internal sealed class ValueTupleJsonConverter<T1, T2, T3, T4> : JsonConverter<ValueTuple<T1, T2, T3, T4>>
     {
         public override ValueTuple<T1, T2, T3, T4> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
@@ -78,24 +85,28 @@ namespace JsonSerialization.Converters
 				throw new JsonException();
 			}
 
-			T1 item1 = ReadNext<T1>(ref reader, typeToConvert, options);
-            T2 item2 = ReadNext<T2>(ref reader, typeToConvert, options);
-            T3 item3 = ReadNext<T3>(ref reader, typeToConvert, options);
-            T4 item4 = ReadNext<T4>(ref reader, typeToConvert, options);
+			_ = reader.Read();
+			T1 item1 = JsonSerializer.Deserialize<T1>(ref reader, options)!;
             _ = reader.Read();
+			T2 item2 = JsonSerializer.Deserialize<T2>(ref reader, options)!;
+            _ = reader.Read();
+			T3 item3 = JsonSerializer.Deserialize<T3>(ref reader, options)!;
+            _ = reader.Read();
+			T4 item4 = JsonSerializer.Deserialize<T4>(ref reader, options)!;
+			_ = reader.Read();
             return new ValueTuple<T1, T2, T3, T4>(item1, item2, item3, item4);
         }
         public override void Write(Utf8JsonWriter writer, ValueTuple<T1, T2, T3, T4> value, JsonSerializerOptions options)
         {
             writer.WriteStartArray();
-            Write(writer, value.Item1, options);
-            Write(writer, value.Item2, options);
-            Write(writer, value.Item3, options);
-            Write(writer, value.Item4, options);
+            JsonSerializer.Serialize(writer, value.Item1, options);
+            JsonSerializer.Serialize(writer, value.Item2, options);
+            JsonSerializer.Serialize(writer, value.Item3, options);
+            JsonSerializer.Serialize(writer, value.Item4, options);
             writer.WriteEndArray();
         }
     }
-    internal sealed class ValueTupleJsonConverter<T1, T2, T3, T4, T5> : ExtendedJsonConverter<ValueTuple<T1, T2, T3, T4, T5>>
+    internal sealed class ValueTupleJsonConverter<T1, T2, T3, T4, T5> : JsonConverter<ValueTuple<T1, T2, T3, T4, T5>>
     {
         public override ValueTuple<T1, T2, T3, T4, T5> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
@@ -104,26 +115,31 @@ namespace JsonSerialization.Converters
 				throw new JsonException();
 			}
 
-			T1 item1 = ReadNext<T1>(ref reader, typeToConvert, options);
-            T2 item2 = ReadNext<T2>(ref reader, typeToConvert, options);
-            T3 item3 = ReadNext<T3>(ref reader, typeToConvert, options);
-            T4 item4 = ReadNext<T4>(ref reader, typeToConvert, options);
-            T5 item5 = ReadNext<T5>(ref reader, typeToConvert, options);
+			_ = reader.Read();
+			T1 item1 = JsonSerializer.Deserialize<T1>(ref reader, options)!;
+            _ = reader.Read();
+			T2 item2 = JsonSerializer.Deserialize<T2>(ref reader, options)!;
+            _ = reader.Read();
+			T3 item3 = JsonSerializer.Deserialize<T3>(ref reader, options)!;
+            _ = reader.Read();
+			T4 item4 = JsonSerializer.Deserialize<T4>(ref reader, options)!;
+			_ = reader.Read();
+            T5 item5 = JsonSerializer.Deserialize<T5>(ref reader, options)!;
             _ = reader.Read();
             return new ValueTuple<T1, T2, T3, T4, T5>(item1, item2, item3, item4, item5);
         }
         public override void Write(Utf8JsonWriter writer, ValueTuple<T1, T2, T3, T4, T5> value, JsonSerializerOptions options)
         {
             writer.WriteStartArray();
-            Write(writer, value.Item1, options);
-            Write(writer, value.Item2, options);
-            Write(writer, value.Item3, options);
-            Write(writer, value.Item4, options);
-            Write(writer, value.Item5, options);
+            JsonSerializer.Serialize(writer, value.Item1, options);
+            JsonSerializer.Serialize(writer, value.Item2, options);
+            JsonSerializer.Serialize(writer, value.Item3, options);
+            JsonSerializer.Serialize(writer, value.Item4, options);
+            JsonSerializer.Serialize(writer, value.Item5, options);
             writer.WriteEndArray();
         }
     }
-    internal sealed class ValueTupleJsonConverter<T1, T2, T3, T4, T5, T6> : ExtendedJsonConverter<ValueTuple<T1, T2, T3, T4, T5, T6>>
+    internal sealed class ValueTupleJsonConverter<T1, T2, T3, T4, T5, T6> : JsonConverter<ValueTuple<T1, T2, T3, T4, T5, T6>>
     {
         public override ValueTuple<T1, T2, T3, T4, T5, T6> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
@@ -132,28 +148,34 @@ namespace JsonSerialization.Converters
 				throw new JsonException();
 			}
 
-			T1 item1 = ReadNext<T1>(ref reader, typeToConvert, options);
-            T2 item2 = ReadNext<T2>(ref reader, typeToConvert, options);
-            T3 item3 = ReadNext<T3>(ref reader, typeToConvert, options);
-            T4 item4 = ReadNext<T4>(ref reader, typeToConvert, options);
-            T5 item5 = ReadNext<T5>(ref reader, typeToConvert, options);
-            T6 item6 = ReadNext<T6>(ref reader, typeToConvert, options);
+			_ = reader.Read();
+			T1 item1 = JsonSerializer.Deserialize<T1>(ref reader, options)!;
+            _ = reader.Read();
+			T2 item2 = JsonSerializer.Deserialize<T2>(ref reader, options)!;
+            _ = reader.Read();
+			T3 item3 = JsonSerializer.Deserialize<T3>(ref reader, options)!;
+            _ = reader.Read();
+			T4 item4 = JsonSerializer.Deserialize<T4>(ref reader, options)!;
+			_ = reader.Read();
+            T5 item5 = JsonSerializer.Deserialize<T5>(ref reader, options)!;
+            _ = reader.Read();
+            T6 item6 = JsonSerializer.Deserialize<T6>(ref reader, options)!;
             _ = reader.Read();
             return new ValueTuple<T1, T2, T3, T4, T5, T6>(item1, item2, item3, item4, item5, item6);
         }
         public override void Write(Utf8JsonWriter writer, ValueTuple<T1, T2, T3, T4, T5, T6> value, JsonSerializerOptions options)
         {
             writer.WriteStartArray();
-            Write(writer, value.Item1, options);
-            Write(writer, value.Item2, options);
-            Write(writer, value.Item3, options);
-            Write(writer, value.Item4, options);
-            Write(writer, value.Item5, options);
-            Write(writer, value.Item6, options);
+            JsonSerializer.Serialize(writer, value.Item1, options);
+            JsonSerializer.Serialize(writer, value.Item2, options);
+            JsonSerializer.Serialize(writer, value.Item3, options);
+            JsonSerializer.Serialize(writer, value.Item4, options);
+            JsonSerializer.Serialize(writer, value.Item5, options);
+            JsonSerializer.Serialize(writer, value.Item6, options);
             writer.WriteEndArray();
         }
     }
-    internal sealed class ValueTupleJsonConverter<T1, T2, T3, T4, T5, T6, T7> : ExtendedJsonConverter<ValueTuple<T1, T2, T3, T4, T5, T6, T7>>
+    internal sealed class ValueTupleJsonConverter<T1, T2, T3, T4, T5, T6, T7> : JsonConverter<ValueTuple<T1, T2, T3, T4, T5, T6, T7>>
     {
         public override ValueTuple<T1, T2, T3, T4, T5, T6, T7> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
@@ -162,30 +184,37 @@ namespace JsonSerialization.Converters
 				throw new JsonException();
 			}
 
-			T1 item1 = ReadNext<T1>(ref reader, typeToConvert, options);
-            T2 item2 = ReadNext<T2>(ref reader, typeToConvert, options);
-            T3 item3 = ReadNext<T3>(ref reader, typeToConvert, options);
-            T4 item4 = ReadNext<T4>(ref reader, typeToConvert, options);
-            T5 item5 = ReadNext<T5>(ref reader, typeToConvert, options);
-            T6 item6 = ReadNext<T6>(ref reader, typeToConvert, options);
-            T7 item7 = ReadNext<T7>(ref reader, typeToConvert, options);
+			_ = reader.Read();
+			T1 item1 = JsonSerializer.Deserialize<T1>(ref reader, options)!;
+            _ = reader.Read();
+			T2 item2 = JsonSerializer.Deserialize<T2>(ref reader, options)!;
+            _ = reader.Read();
+			T3 item3 = JsonSerializer.Deserialize<T3>(ref reader, options)!;
+            _ = reader.Read();
+			T4 item4 = JsonSerializer.Deserialize<T4>(ref reader, options)!;
+			_ = reader.Read();
+            T5 item5 = JsonSerializer.Deserialize<T5>(ref reader, options)!;
+            _ = reader.Read();
+            T6 item6 = JsonSerializer.Deserialize<T6>(ref reader, options)!;
+            _ = reader.Read();
+            T7 item7 = JsonSerializer.Deserialize<T7>(ref reader, options)!;
             _ = reader.Read();
             return new ValueTuple<T1, T2, T3, T4, T5, T6, T7>(item1, item2, item3, item4, item5, item6, item7);
         }
         public override void Write(Utf8JsonWriter writer, ValueTuple<T1, T2, T3, T4, T5, T6, T7> value, JsonSerializerOptions options)
         {
             writer.WriteStartArray();
-            Write(writer, value.Item1, options);
-            Write(writer, value.Item2, options);
-            Write(writer, value.Item3, options);
-            Write(writer, value.Item4, options);
-            Write(writer, value.Item5, options);
-            Write(writer, value.Item6, options);
-            Write(writer, value.Item7, options);
+            JsonSerializer.Serialize(writer, value.Item1, options);
+            JsonSerializer.Serialize(writer, value.Item2, options);
+            JsonSerializer.Serialize(writer, value.Item3, options);
+            JsonSerializer.Serialize(writer, value.Item4, options);
+            JsonSerializer.Serialize(writer, value.Item5, options);
+            JsonSerializer.Serialize(writer, value.Item6, options);
+            JsonSerializer.Serialize(writer, value.Item7, options);
             writer.WriteEndArray();
         }
     }
-    internal sealed class ValueTupleJsonConverter<T1, T2, T3, T4, T5, T6, T7, TRest> : ExtendedJsonConverter<ValueTuple<T1, T2, T3, T4, T5, T6, T7, TRest>> where TRest : struct
+    internal sealed class ValueTupleJsonConverter<T1, T2, T3, T4, T5, T6, T7, TRest> : JsonConverter<ValueTuple<T1, T2, T3, T4, T5, T6, T7, TRest>> where TRest : struct
     {
         public override ValueTuple<T1, T2, T3, T4, T5, T6, T7, TRest> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
@@ -194,28 +223,36 @@ namespace JsonSerialization.Converters
 				throw new JsonException();
 			}
 
-			T1 item1 = ReadNext<T1>(ref reader, typeToConvert, options);
-            T2 item2 = ReadNext<T2>(ref reader, typeToConvert, options);
-            T3 item3 = ReadNext<T3>(ref reader, typeToConvert, options);
-            T4 item4 = ReadNext<T4>(ref reader, typeToConvert, options);
-            T5 item5 = ReadNext<T5>(ref reader, typeToConvert, options);
-            T6 item6 = ReadNext<T6>(ref reader, typeToConvert, options);
-            T7 item7 = ReadNext<T7>(ref reader, typeToConvert, options);
-            TRest rest = ReadNext<TRest>(ref reader, typeToConvert, options);
+			_ = reader.Read();
+			T1 item1 = JsonSerializer.Deserialize<T1>(ref reader, options)!;
+            _ = reader.Read();
+			T2 item2 = JsonSerializer.Deserialize<T2>(ref reader, options)!;
+            _ = reader.Read();
+			T3 item3 = JsonSerializer.Deserialize<T3>(ref reader, options)!;
+            _ = reader.Read();
+			T4 item4 = JsonSerializer.Deserialize<T4>(ref reader, options)!;
+			_ = reader.Read();
+            T5 item5 = JsonSerializer.Deserialize<T5>(ref reader, options)!;
+            _ = reader.Read();
+            T6 item6 = JsonSerializer.Deserialize<T6>(ref reader, options)!;
+            _ = reader.Read();
+            T7 item7 = JsonSerializer.Deserialize<T7>(ref reader, options)!;
+            _ = reader.Read();
+            TRest rest = JsonSerializer.Deserialize<TRest>(ref reader, options)!;
             _ = reader.Read();
             return new ValueTuple<T1, T2, T3, T4, T5, T6, T7, TRest>(item1, item2, item3, item4, item5, item6, item7, rest);
         }
         public override void Write(Utf8JsonWriter writer, ValueTuple<T1, T2, T3, T4, T5, T6, T7, TRest> value, JsonSerializerOptions options)
         {
             writer.WriteStartArray();
-            Write(writer, value.Item1, options);
-            Write(writer, value.Item2, options);
-            Write(writer, value.Item3, options);
-            Write(writer, value.Item4, options);
-            Write(writer, value.Item5, options);
-            Write(writer, value.Item6, options);
-            Write(writer, value.Item7, options);
-            Write(writer, value.Rest, options);
+            JsonSerializer.Serialize(writer, value.Item1, options);
+            JsonSerializer.Serialize(writer, value.Item2, options);
+            JsonSerializer.Serialize(writer, value.Item3, options);
+            JsonSerializer.Serialize(writer, value.Item4, options);
+            JsonSerializer.Serialize(writer, value.Item5, options);
+            JsonSerializer.Serialize(writer, value.Item6, options);
+            JsonSerializer.Serialize(writer, value.Item7, options);
+            JsonSerializer.Serialize(writer, value.Rest, options);
             writer.WriteEndArray();
         }
     }

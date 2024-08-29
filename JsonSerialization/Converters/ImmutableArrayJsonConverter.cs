@@ -2,10 +2,11 @@
 using System.Collections.Immutable;
 using System.Linq;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace JsonSerialization.Converters
 {
-    internal sealed class ImmutableArrayJsonConverter<T> : ExtendedJsonConverter<ImmutableArray<T>>
+    internal sealed class ImmutableArrayJsonConverter<T> : JsonConverter<ImmutableArray<T>>
     {
         public override ImmutableArray<T> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {

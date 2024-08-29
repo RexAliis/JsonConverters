@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace JsonSerialization.Converters
 {
-    internal sealed class ImmutableDictionaryJsonConverter<TKey, TValue> : ExtendedJsonConverter<ImmutableDictionary<TKey, TValue>> where TKey : notnull
+    internal sealed class ImmutableDictionaryJsonConverter<TKey, TValue> : JsonConverter<ImmutableDictionary<TKey, TValue>> where TKey : notnull
     {
         public override ImmutableDictionary<TKey, TValue> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
