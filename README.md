@@ -14,7 +14,7 @@ dotnet add package RexAliis.JsonSerialization --version 2.0.0
 
 - System.Tuple
 - System.ValueTuple
-- JsonSerialization.Optional
+- JsonSerialization.Nullability.Optional
 
 ```cs
 using JsonSerialization.Converters;
