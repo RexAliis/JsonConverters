@@ -43,7 +43,7 @@ namespace JsonSerialization.Nullability
 		/// Initializes a new instance of the <see cref="Optional{T}"/> in an undefined state.
 		/// </summary>
 		public Optional() { }
-		
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Optional{T}"/> struct with the specified value.
 		/// If the provided value is null, the instance will be marked as null. 
@@ -59,7 +59,7 @@ namespace JsonSerialization.Nullability
 
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) => obj is Optional<T> other && Equals(other);
-		
+
 		/// <inheritdoc/>
 		public bool Equals(Optional<T> other)
 		{
@@ -69,7 +69,8 @@ namespace JsonSerialization.Nullability
 		}
 
 		/// <inheritdoc/>
-		public override int GetHashCode(){
+		public override int GetHashCode()
+		{
 			return IsUndefined
 			? 0
 			: HashCode.Combine(IsUndefined, IsNull ? 0 : Value!.GetHashCode());
