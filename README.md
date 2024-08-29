@@ -1,17 +1,20 @@
 # Json Serialization
-A library for serializing/deserializing widely known types in the .NET API
+
+A library for serializing/deserializing types
 
 Provides functionality for distinguishing between `null` types and the `undefined` state.
-### Install
-```
-dotnet add package RexAliis.JsonSerialization --version 1.0.0
+
+## Install
+
+```bash
+dotnet add package RexAliis.JsonSerialization --version 2.0.0
 ```
 
-### Supported natitypes
- - Tuple
- - ValueTuple
- - ImmutableArray
- - ImmutableDictionary
+## Supported types
+
+- System.Tuple
+- System.ValueTuple
+- JsonSerialization.Optional
 
 ```cs
 using JsonSerialization.Converters;
@@ -28,9 +31,10 @@ JsonSerializer.Serialize((1, 2, 3, 4), options); // string [1,2,3,4]
 JsonSerializer.Deserialize<(int, int, int, int)>("[5,6,7,8]", options); // ValueTuple<int, int, int, int> (5, 6, 7, 8)
 ```
 
-### Nullability
+## Nullability
 
 Example class:
+
 ```cs
 using JsonSerialization.Nullability;
 
@@ -42,6 +46,7 @@ internal sealed class User
 ```
 
 Main file:
+
 ```cs
 using JsonSerialization.Converters;
 using System.Text.Json;
@@ -59,9 +64,16 @@ User firstUser = JsonSerializer.Deserialize<User>("""
     "Username": "qwerty"
 }
 """, options)!;
-Console.WriteLine(firstUser.Nickname.Value); //null
-Console.WriteLine(firstUser.Nickname.IsNull); //false
-Console.WriteLine(firstUser.Nickname.IsUndefined); //true
+/*
+ * Username = "qwerty"
+ * Nickname
+ * {
+ *     Value = null
+ *     HasValue = false,
+ *     IsNull = false,
+ *     IsUndefined = true
+ * }
+*/
 
 User secondUser = JsonSerializer.Deserialize<User>("""
 {
@@ -69,9 +81,16 @@ User secondUser = JsonSerializer.Deserialize<User>("""
     "Nickname": null
 }
 """, options)!;
-Console.WriteLine(secondUser.Nickname.Value); //null
-Console.WriteLine(secondUser.Nickname.IsNull); //true
-Console.WriteLine(secondUser.Nickname.IsUndefined); //false
+/*
+ * Username = "asdfgh"
+ * Nickname
+ * {
+ *     Value = null
+ *     HasValue = false,
+ *     IsNull = true,
+ *     IsUndefined = false
+ * }
+*/
 
 User thirdUser = JsonSerializer.Deserialize<User>("""
 {
@@ -79,7 +98,14 @@ User thirdUser = JsonSerializer.Deserialize<User>("""
     "Nickname": "zxcvbn dude"
 }
 """, options)!;
-Console.WriteLine(thirdUser.Nickname.Value); //"zxcvbn dude"
-Console.WriteLine(thirdUser.Nickname.IsNull); //false
-Console.WriteLine(thirdUser.Nickname.IsUndefined); //false
+/*
+ * Username = "zxcvbn"
+ * Nickname
+ * {
+ *     Value = "zxcvbn dude"
+ *     HasValue = true,
+ *     IsNull = false,
+ *     IsUndefined = false
+ * }
+*/
 ```
