@@ -45,6 +45,8 @@ internal sealed class User
 }
 ```
 
+If you want to ensure that your Optional{T} is never undefined, you should mark it with the `required` keyword.
+
 Main file:
 
 ```cs
