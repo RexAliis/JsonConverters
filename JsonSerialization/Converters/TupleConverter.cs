@@ -4,8 +4,12 @@ using System.Text.Json.Serialization;
 
 namespace JsonSerialization.Converters
 {
+	/// <summary>
+	/// Converts a <see cref="Tuple"/> or <see cref="ValueTuple"/> to or from JSON.
+	/// </summary>
     public sealed class TupleConverter : JsonConverterFactory
     {
+		/// <inheritdoc/>
         public override bool CanConvert(Type typeToConvert)
         {
             ArgumentNullException.ThrowIfNull(typeToConvert);
@@ -34,6 +38,8 @@ namespace JsonSerialization.Converters
                     || typeDefinition == typeof(ValueTuple<,,,,,,>)
                     || typeDefinition == typeof(ValueTuple<,,,,,,,>);
         }
+        
+		/// <inheritdoc/>
         public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)
         {
             ArgumentNullException.ThrowIfNull(typeToConvert);

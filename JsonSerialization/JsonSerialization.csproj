@@ -10,6 +10,7 @@
 		<Deterministic>True</Deterministic>
 		<DebugType>portable</DebugType>
 		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 
 		<Version>1.1.1</Version>
 		<Authors>Rex Aliis</Authors>
