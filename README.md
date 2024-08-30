@@ -1,4 +1,4 @@
-# Json Serialization
+# [Json Serialization](https://www.nuget.org/packages/RexAliis.JsonSerialization/)
 
 A library for serializing/deserializing types
 
@@ -7,7 +7,7 @@ Provides functionality for distinguishing between `null` types and the `undefine
 ## Install
 
 ```bash
-dotnet add package RexAliis.JsonSerialization --version 2.0.0
+dotnet add package RexAliis.JsonSerialization --version 2.0.3
 ```
 
 ## Supported types
