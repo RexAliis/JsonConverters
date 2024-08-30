@@ -21,13 +21,13 @@ namespace JsonSerialization.Nullability
 		/// Gets a value indicating whether the current <see cref="Optional{T}"/> instance contains a non-null value.
 		/// If <typeparamref name="T"/> is a non-nullable type, this property will be <c>true</c> as long as the instance is not in its undefined state.
 		/// </summary>
-		public readonly bool HasValue => !IsNull;
+		public readonly bool HasValue => Value != null && !IsUndefined;
 
 		/// <summary>
 		/// Gets a value indicating whether the current <see cref="Optional{T}"/> instance contains a null value.
 		/// This property is always <c>false</c> if <typeparamref name="T"/> is a non-nullable value type.
 		/// </summary>
-		public readonly bool IsNull => Value == null;
+		public readonly bool IsNull => Value == null && !IsUndefined;
 
 		/// <summary>
 		/// Gets a value indicating whether the current <see cref="Optional{T}"/> instance is in its undefined state.
