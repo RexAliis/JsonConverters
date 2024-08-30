@@ -21,18 +21,19 @@ namespace JsonSerialization.Nullability
 		/// Gets a value indicating whether the current <see cref="Optional{T}"/> instance contains a non-null value.
 		/// If <typeparamref name="T"/> is a non-nullable type, this property will be <c>true</c> as long as the instance is not in its undefined state.
 		/// </summary>
-		public readonly bool HasValue => Value != null && !IsUndefined;
+		public readonly bool HasValue => Value != null && _isInitialized;
 
 		/// <summary>
 		/// Gets a value indicating whether the current <see cref="Optional{T}"/> instance contains a null value.
 		/// This property is always <c>false</c> if <typeparamref name="T"/> is a non-nullable value type.
 		/// </summary>
-		public readonly bool IsNull => Value == null && !IsUndefined;
+		public readonly bool IsNull => Value == null && _isInitialized;
 
 		/// <summary>
 		/// Gets a value indicating whether the current <see cref="Optional{T}"/> instance is in its undefined state.
 		/// </summary>
-		public readonly bool IsUndefined => this == default;
+		public readonly bool IsUndefined => !_isInitialized;
+		private readonly bool _isInitialized;
 
 		/// <summary>
 		/// Represents a undefined state for <see cref="Optional{T}"/>.
@@ -49,7 +50,11 @@ namespace JsonSerialization.Nullability
 		/// If the provided value is null, the instance will be marked as null. 
 		/// </summary>
 		/// <param name="value">The value to be assigned to this instance.</param>
-		public Optional(T value) => Value = value;
+		public Optional(T value)
+		{
+			Value = value;
+			_isInitialized = true;
+		}
 
 		/// <inheritdoc/>
 		public override bool Equals(object? obj) => obj is Optional<T> other && Equals(other);
@@ -57,7 +62,8 @@ namespace JsonSerialization.Nullability
 		/// <inheritdoc/>
 		public bool Equals(Optional<T> other)
 		{
-			return IsNull == other.IsNull
+			return IsUndefined == other.IsUndefined
+			&& IsNull == other.IsNull
 			&& (IsNull || Value!.Equals(other.Value));
 		}
 
