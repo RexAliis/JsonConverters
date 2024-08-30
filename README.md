@@ -36,7 +36,6 @@ JsonSerializer.Deserialize<(int, int, int, int)>("[5,6,7,8]", options); // Value
 ### Remarks
 
 For the Value to be able to be null, the generic parameter T must be nullable.
-If you want to ensure that your Optional{T}.IsUndefined is never `true`, you should mark it with the `required` keyword.
 
 ### Example
 
