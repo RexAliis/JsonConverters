@@ -4,12 +4,6 @@ A library for serializing/deserializing types
 
 Provides functionality for distinguishing between `null` types and the `undefined` state.
 
-## Install
-
-```bash
-dotnet add package RexAliis.JsonSerialization --version 2.0.3
-```
-
 ## Supported types
 
 - System.Tuple
@@ -44,14 +38,17 @@ Example class:
 ```cs
 using JsonSerialization.Nullability;
 
-internal sealed class User
+class User
 {
+    public required ulong ID { get; init; }
     public required string Username { get; init; }
-    public Optional<string?> Nickname { get; init; }
+    public Optional<string> GlobalName { get; init; }
+    public Optional<string?> GroupNickname { get; init; }
+    public Optional HasPremium { get; init; }
 }
 ```
 
-Main file:
+Optional converter:
 
 ```cs
 using JsonSerialization.Converters;
@@ -64,54 +61,4 @@ JsonSerializerOptions options = new()
         new OptionalConverter()
     }
 };
-
-User firstUser = JsonSerializer.Deserialize<User>("""
-{
-    "Username": "qwerty"
-}
-""", options)!;
-/*
- * Username = "qwerty"
- * Nickname
- * {
- *     Value = null
- *     HasValue = false,
- *     IsNull = false,
- *     IsUndefined = true
- * }
-*/
-
-User secondUser = JsonSerializer.Deserialize<User>("""
-{
-    "Username": "asdfgh",
-    "Nickname": null
-}
-""", options)!;
-/*
- * Username = "asdfgh"
- * Nickname
- * {
- *     Value = null
- *     HasValue = false,
- *     IsNull = true,
- *     IsUndefined = false
- * }
-*/
-
-User thirdUser = JsonSerializer.Deserialize<User>("""
-{
-    "Username": "zxcvbn",
-    "Nickname": "zxcvbn dude"
-}
-""", options)!;
-/*
- * Username = "zxcvbn"
- * Nickname
- * {
- *     Value = "zxcvbn dude"
- *     HasValue = true,
- *     IsNull = false,
- *     IsUndefined = false
- * }
-*/
 ```
