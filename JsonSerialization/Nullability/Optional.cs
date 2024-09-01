@@ -4,6 +4,43 @@ using System.Diagnostics.CodeAnalysis;
 namespace JsonSerialization.Nullability
 {
 	/// <summary>
+	/// Represents an optional field that can be undefined or present.
+	/// </summary>
+	[SuppressMessage("Naming", "CA1716: Identifiers should not match keywords")]
+	public readonly struct Optional : IEquatable<Optional>
+	{
+		/// <summary>
+		/// Gets a value indicating whether the current <see cref="Optional"/> instance is in its undefined state.
+		/// </summary>
+		public readonly bool IsUndefined => !_isInitialized;
+		private readonly bool _isInitialized;
+
+		/// <summary>
+		/// Represents a undefined state for <see cref="Optional"/>.
+		/// </summary>
+		public static readonly Optional Undefined;
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Optional"/> in an defined state.
+		/// </summary>
+		public Optional() => _isInitialized = true;
+
+		/// <inheritdoc/>
+		public override bool Equals(object? obj) => obj is Optional other && Equals(other);
+
+		/// <inheritdoc/>
+		public bool Equals(Optional other) => IsUndefined == other.IsUndefined;
+
+		/// <inheritdoc/>
+		public override int GetHashCode() => IsUndefined.GetHashCode();
+
+		/// <inheritdoc/>
+		public static bool operator ==(Optional left, Optional right) => left.Equals(right);
+
+		/// <inheritdoc/>
+		public static bool operator !=(Optional left, Optional right) => !(left == right);
+	}
+	/// <summary>
 	/// Encapsulates an optional value that can be in one of three states: undefined, null, or assigned a valid value.
 	/// This struct provides a robust way to represent optional data, with explicit handling of null and undefined states.
 	/// </summary>
