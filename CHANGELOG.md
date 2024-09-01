@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.1.0
+
+### Added
+
+- Optional type with no generics
+
 ## v2.0.0
 
 ### Added
