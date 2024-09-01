@@ -41,8 +41,7 @@ namespace JsonSerialization.Nullability
 		public static bool operator !=(Optional left, Optional right) => !(left == right);
 	}
 	/// <summary>
-	/// Encapsulates an optional value that can be in one of three states: undefined, null, or assigned a valid value.
-	/// This struct provides a robust way to represent optional data, with explicit handling of null and undefined states.
+	/// Encapsulates an optional value that can be undefined, null, or assigned a valid value.
 	/// </summary>
 	/// <typeparam name="T">The underlying type of the optional value.</typeparam>
 	[SuppressMessage("Naming", "CA1716: Identifiers should not match keywords")]
