@@ -1,5 +1,7 @@
+using JsonSerialization.Converters;
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 
 namespace JsonSerialization.Nullability
 {
@@ -7,6 +9,7 @@ namespace JsonSerialization.Nullability
 	/// Represents an optional field that can be undefined or present.
 	/// </summary>
 	[SuppressMessage("Naming", "CA1716: Identifiers should not match keywords")]
+	[JsonConverter(typeof(OptionalFieldJsonConverter))]
 	public readonly struct Optional : IEquatable<Optional>
 	{
 		/// <summary>
@@ -45,6 +48,7 @@ namespace JsonSerialization.Nullability
 	/// </summary>
 	/// <typeparam name="T">The underlying type of the optional value.</typeparam>
 	[SuppressMessage("Naming", "CA1716: Identifiers should not match keywords")]
+	[JsonConverter(typeof(OptionalConverter))]
 	public readonly struct Optional<T> : IEquatable<Optional<T>>
 	{
 		/// <summary>
