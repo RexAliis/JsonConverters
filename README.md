@@ -6,9 +6,10 @@ Provides functionality for distinguishing between `null` types and the `undefine
 
 ## Supported types
 
-- System.Tuple
-- System.ValueTuple
-- JsonSerialization.Nullability.Optional
+- `System.Tuple`
+- `System.ValueTuple`
+- `JsonSerialization.Nullability.Optional`
+- `JsonSerialization.Nullability.Optional<T>`
 
 ```cs
 using JsonSerialization.Converters;
@@ -27,11 +28,7 @@ JsonSerializer.Deserialize<(int, int, int, int)>("[5,6,7,8]", options); // Value
 
 ## Nullability
 
-### Remarks
-
-For the Value to be able to be null, the generic parameter T must be nullable.
-
-### Example
+There is no need to declare converters for `Optional` and `Optional<T>` in the serialization options, as they are implemented through the `JsonConverterAttribute`.
 
 Example class:
 
@@ -40,7 +37,7 @@ using JsonSerialization.Nullability;
 
 class User
 {
-    public required ulong ID { get; init; }
+    public required int ID { get; init; }
     public required string Username { get; init; }
     public Optional<string> GlobalName { get; init; }
     public Optional<string?> GroupNickname { get; init; }
@@ -48,17 +45,69 @@ class User
 }
 ```
 
-Optional converter:
+Example uses:
 
 ```cs
-using JsonSerialization.Converters;
 using System.Text.Json;
 
-JsonSerializerOptions options = new()
+User exampleUser;
+```
+
+```cs
+exampleUser = new()
 {
-    Converters = 
-    {
-        new OptionalConverter()
-    }
-};
+    ID = 1,
+    Username = "qwerty",
+    GlobalName = new("Qwerty"),
+    GroupNickname = new(null),
+    HasPremium = new()
+}
+
+JsonSerializer.Serialize(exampleUser);
+/*
+ * {
+ *     ID: 1,
+ *     Username: "qwerty",
+ *     GlobalName: "Qwerty",
+ *     GroupNickname: null,
+ *     HasPremium: null
+ * }
+*/
+```
+
+```cs
+exampleUser = new()
+{
+    ID = 12345678901234567,
+    Username = "qwerty",
+    GlobalName = new(), // Is Undefined
+    GroupNickname = new() // Is Undefined
+    HasPremium = new() // Is present
+}
+/*
+ * {
+ *     ID: 1,
+ *     Username: "qwerty",
+ *     HasPremium: null
+ * }
+*/
+```
+
+```cs
+exampleUser = new()
+{
+    ID = 12345678901234567,
+    Username = "qwerty",
+    // GlobalName is Undefined
+    // GroupNickname is Undefined
+    // HasPremium is not present
+}
+/*
+ * {
+ *     ID: 1,
+ *     Username: "qwerty",
+ * }
+*/
+
+JsonSerializer.Serialize(exampleUser);
 ```
