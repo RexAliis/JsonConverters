@@ -8,7 +8,7 @@ namespace JsonSerialization.Converters
 	/// <summary>
 	/// Converts a <see cref="Optional{T}"/> to or from JSON.
 	/// </summary>
-	public sealed class OptionalConverter : JsonConverterFactory
+	internal sealed class OptionalConverter : JsonConverterFactory
 	{
 		/// <inheritdoc/>
 		public override bool CanConvert(Type typeToConvert)
