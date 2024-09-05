@@ -1,10 +1,16 @@
 # Changelog
 
+## v3.0.1
+
+### Fixed
+
+- `JsonSerialization.Nullability.Optional<T>` Comparisons against the default value no longer cause a NullReferenceException
+
 ## v3.0.0
 
 ### Added
 
-- Fixed missing `JsonSerialization.Converters.OptionalFieldConverter` converter for `JsonSerialization.Nullability.Optional`
+- Missing `JsonSerialization.Converters.OptionalFieldConverter` converter for `JsonSerialization.Nullability.Optional`
 - Now `JsonSerialization.Converters.OptionalFieldConverter` and `JsonSerialization.Converters.OptionalConverter` have the `System.Text.Json.Serialization.JsonConverterAttribute`
 
 ### Changed
