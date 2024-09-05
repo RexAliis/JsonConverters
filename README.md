@@ -29,6 +29,7 @@ JsonSerializer.Deserialize<(int, int, int, int)>("[5,6,7,8]", options); // Value
 ## Nullability
 
 There is no need to declare converters for `Optional` and `Optional<T>` in the serialization options, as they are implemented through the `JsonConverterAttribute`.
+For correct serialization, it is necessary that the ignore condition be `JsonIgnoreCondition.WhenWritingDefault`.
 
 Example class:
 
@@ -84,6 +85,8 @@ exampleUser = new()
     GroupNickname = new() // Is Undefined
     HasPremium = new() // Is present
 }
+
+JsonSerializer.Serialize(exampleUser);
 /*
  * {
  *     ID: 1,
@@ -102,6 +105,8 @@ exampleUser = new()
     // GroupNickname is Undefined
     // HasPremium is not present
 }
+
+JsonSerializer.Serialize(exampleUser);
 /*
  * {
  *     ID: 1,
@@ -109,5 +114,4 @@ exampleUser = new()
  * }
 */
 
-JsonSerializer.Serialize(exampleUser);
 ```
