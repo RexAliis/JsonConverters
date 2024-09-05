@@ -55,7 +55,7 @@ namespace JsonSerialization.Nullability
 		/// Gets the underlying value of the current <see cref="Optional{T}"/> instance.
 		/// The value may be <c>null</c> if <typeparamref name="T"/> is a reference or nullable type.
 		/// </summary>
-		public readonly T? Value { get; private init; }
+		public readonly T? Value { get; private init; } = default;
 
 		/// <summary>
 		/// Gets a value indicating whether the current <see cref="Optional{T}"/> instance contains a non-null value.
@@ -83,7 +83,7 @@ namespace JsonSerialization.Nullability
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Optional{T}"/> in an undefined state.
 		/// </summary>
-		public Optional() => Value = default;
+		public Optional() { }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Optional{T}"/> struct with the specified value.
@@ -103,8 +103,8 @@ namespace JsonSerialization.Nullability
 		public bool Equals(Optional<T> other)
 		{
 			return IsUndefined == other.IsUndefined
-			&& IsNull == other.IsNull
-			&& (IsNull || Value!.Equals(other.Value));
+			|| (IsNull == other.IsNull
+			&& (IsNull || Value!.Equals(other.Value)));
 		}
 
 		/// <inheritdoc/>
