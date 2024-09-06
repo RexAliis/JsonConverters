@@ -1,5 +1,12 @@
 # Changelog
 
+## v3.1.0
+
+### Changed
+
+- Access to `JsonSerialization.Converters.OptionalConverter` is now `public`
+- Access to `JsonSerialization.Converters.OptionalFieldJsonConverter` is now `public`
+
 ## v3.0.1
 
 ### Fixed
@@ -15,7 +22,7 @@
 
 ### Changed
 
-- Access to `JsonSerialization.Converters.OptionalConverter` is now "internal"
+- Access to `JsonSerialization.Converters.OptionalConverter` is now `internal`
 
 ## v2.1.0
 
