@@ -8,7 +8,7 @@ namespace JsonSerialization.Converters
 	/// <summary>
 	/// Converts a <see cref="Optional"/> to or from JSON.
 	/// </summary>
-	internal sealed class OptionalFieldJsonConverter : JsonConverter<Optional>
+	public sealed class OptionalFieldJsonConverter : JsonConverter<Optional>
 	{
 		/// <inheritdoc/>
 		public override bool HandleNull => true;
@@ -19,6 +19,7 @@ namespace JsonSerialization.Converters
 		/// <inheritdoc/>
 		public override void Write(Utf8JsonWriter writer, Optional value, JsonSerializerOptions options)
 		{
+			ArgumentNullException.ThrowIfNull(writer);
 			if(!value.IsUndefined)
 			{
 				writer.WriteNullValue();
