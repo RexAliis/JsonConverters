@@ -102,9 +102,10 @@ namespace JsonSerialization.Nullability
 		/// <inheritdoc/>
 		public bool Equals(Optional<T> other)
 		{
-			return IsUndefined == other.IsUndefined
+			return (IsUndefined == other.IsUndefined)
+			&& (IsUndefined
 			|| (IsNull == other.IsNull
-			&& (IsNull || Value!.Equals(other.Value)));
+			&& (IsNull || Value!.Equals(other.Value))));
 		}
 
 		/// <inheritdoc/>
