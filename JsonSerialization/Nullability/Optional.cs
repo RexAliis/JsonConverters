@@ -101,20 +101,11 @@ namespace JsonSerialization.Nullability
 
 		/// <inheritdoc/>
 		public bool Equals(Optional<T> other)
-		{
-			return (IsUndefined == other.IsUndefined)
-			&& (IsUndefined
-			|| (IsNull == other.IsNull
-			&& (IsNull || Value!.Equals(other.Value))));
-		}
+			=> (IsUndefined == other.IsUndefined) && (IsUndefined || (IsNull == other.IsNull && (IsNull || Value!.Equals(other.Value))));
 
 		/// <inheritdoc/>
 		public override int GetHashCode()
-		{
-			return IsUndefined
-			? 0
-			: HashCode.Combine(IsUndefined, IsNull ? 0 : Value!.GetHashCode());
-		}
+			=> IsUndefined ? 0 : HashCode.Combine(IsUndefined, IsNull ? 0 : Value!.GetHashCode());
 
 		/// <inheritdoc/>
 		public static bool operator ==(Optional<T> left, Optional<T> right) => left.Equals(right);
