@@ -42,6 +42,18 @@ namespace JsonSerialization.Nullability
 
 		/// <inheritdoc/>
 		public static bool operator !=(Optional left, Optional right) => !(left == right);
+
+		/// <inheritdoc/>
+		public static implicit operator Optional(bool value) => ToOptional(value);
+
+		/// <inheritdoc/>
+		public static implicit operator bool(Optional value) => ToBoolean(value);
+
+		/// <returns>If <paramref name="value"/> is <c>true</c> return a new instance of <see cref="Optional"/>. Otherwise returns <see cref="Undefined"/></returns>
+		public static Optional ToOptional(bool value) => value ? new() : Undefined;
+
+		/// <returns><c>true</c> if <see cref="Optional.IsUndefined"/> is <c>false</c></returns>
+		public static Optional ToBoolean(Optional value) => !value.IsUndefined;
 	}
 	/// <summary>
 	/// Encapsulates an optional value that can be undefined, null, or assigned a valid value.
@@ -112,5 +124,13 @@ namespace JsonSerialization.Nullability
 
 		/// <inheritdoc/>
 		public static bool operator !=(Optional<T> left, Optional<T> right) => !(left == right);
+
+		/// <inheritdoc/>
+		[SuppressMessage("Usage", "CA2225: Operator overloads have named alternates", Justification = "This is a shorthand to the main constructor.")]
+		public static implicit operator Optional<T>(T value) => new(value);
+
+		/// <inheritdoc/>
+		[SuppressMessage("Usage", "CA2225: Operator overloads have named alternates", Justification = "This is a shorthand to the \"Value\" property.")]
+		public static implicit operator T(Optional<T> value) => value.Value!;
 	}
 }
