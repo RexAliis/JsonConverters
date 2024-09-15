@@ -1,5 +1,14 @@
 # Changelog
 
+## v3.2.0
+
+### Added
+
+- Implicit conversion from `T` to `JsonSerialization.Nullability.Optional<T>`
+- Implicit conversion `JsonSerialization.Nullability.Optional<T>` to `T`
+- Implicit conversion from `bool` to `JsonSerialization.Nullability.Optional`
+- Implicit conversion from `JsonSerialization.Nullability.Optional` to `bool`
+
 ## v3.1.0
 
 ### Changed
