@@ -56,11 +56,7 @@ Example uses:
 ```cs
 using System.Text.Json;
 
-User exampleUser;
-```
-
-```cs
-firstUser = new()
+User firstUser = new()
 {
     ID = 1,
     Username = "qwerty",
@@ -82,7 +78,9 @@ string firstUserSerialized = JsonSerializer.Serialize(firstUser);
 ```
 
 ```cs
-secondUser = new()
+using System.Text.Json;
+
+User secondUser = new()
 {
     ID = 12345678901234567,
     Username = "qwerty",
