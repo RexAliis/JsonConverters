@@ -93,6 +93,7 @@ string secondUserSerialized = JsonSerializer.Serialize(secondUser);
  *     Username: "qwerty",
  * }
 */
+```
 
 ```cs
 using System.Text.Json;
